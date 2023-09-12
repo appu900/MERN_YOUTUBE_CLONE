@@ -119,6 +119,9 @@ export const random = async(request,response,next) =>{
     try {
 
         const video = await Video.aggregate([{$sample:{size:40}}])
+        response.json({
+            video
+        })
         
     } catch (error) {
        next(error)
@@ -134,18 +137,60 @@ export const subscribed = async(request,response,next) =>{
         const subscribedChannels = user.subscribedUsers;
 
 
-        const list = Promise.all(
+        const list = await Promise.all(
             subscribedChannels.map(channelId=>{
                 return Video.find({userId:channelId})
             })
         );
 
 
-        response.status(200).json(list);
+        response.status(200).json(list.flat().sort( (a,b) => a.createdAt - b.createdAt));
 
         
     
     } catch (error) {
        next(error)
     }
+}
+
+
+
+//* search videos
+
+
+export const getSearchResult = async(request,response,next) =>{
+
+
+    const title = request.query.q;
+
+    try {
+
+        const videos = await Video.find(
+            {title:{$regex:title,$options:"i"}}
+        ).limit(40);
+
+        response.status(200).json(videos);
+        
+    } catch (error) {
+        next(error)
+    }
+
+}
+
+export const getResultByTag = async(request,response,next) =>{
+
+    
+    const tags = request.query.tags.split(",");
+    console.log(tags)
+
+    try {
+
+        const videos = await Video.find({tags:{$in:tags}}).limit(20);
+        response.status(200).json(videos)
+   
+        
+    } catch (error) {
+        next(error)
+    }
+
 }

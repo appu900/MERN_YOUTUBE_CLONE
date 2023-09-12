@@ -1,5 +1,5 @@
 import express from "express";
-import { addVideo, addView, deleteVideo, random, subscribed, trend, updateVideo} from "../controllers/videoController.js";
+import { addVideo, addView, deleteVideo, getResultByTag, getSearchResult, random, subscribed, trend, updateVideo} from "../controllers/videoController.js";
 import { verifyToken } from "../verifyToken.js";
 
 
@@ -18,6 +18,9 @@ router
   .get("/subscribe",verifyToken,subscribed)
   .get("/trend",trend)
   .put("/view/:id",addView)
+  .get("/tags",getResultByTag)
+  .get("/search",getSearchResult)
+
 
 
 
