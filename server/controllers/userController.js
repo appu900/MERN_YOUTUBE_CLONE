@@ -1,5 +1,6 @@
 import { createError } from "../error.js";
 import User from "../models/User.js";
+import Video from "../models/Video.js";
 
 export const updateUser = async (request, response) => {
   if (request.params.id == request.user.id) {
@@ -46,7 +47,7 @@ export const deleteUser = async (request, response) => {
 
 
 
-export const getUser = async (request, response) => {
+export const getUser = async (request, response,next) => {
 
   try {
 
@@ -59,7 +60,7 @@ export const getUser = async (request, response) => {
 
 };
 
-export const subscribe = async (request, response) => {
+export const subscribe = async (request, response,next) => {
 
      try {
 
@@ -81,7 +82,7 @@ export const subscribe = async (request, response) => {
 
 };
 
-export const unsubscribe = async (request, response) => {
+export const unsubscribe = async (request, response,next) => {
  
   try {
 
@@ -104,7 +105,46 @@ export const unsubscribe = async (request, response) => {
 
 };
 
-export const like = async (request, response) => {};
+export const like = async (request, response,next) => {
 
-export const dislike = async (request, response) => {};
+  const id = request.user.id;
+  const videoId = request.params.videoId;
+  console.log(id);
+
+  try { 
+
+    await Video.findByIdAndUpdate(videoId,{
+      $addToSet:{likes:id},
+      $pull:{dislikes:id}
+    })
+
+    response.status(200).json("you liked this video")
+    
+  } catch (error) {
+     next(error)
+  }
+};
+
+export const dislike = async (request, response,next) => {
+
+  const id = request.user.id;
+  const videoId = request.params.videoId;
+
+  try {
+
+
+    await Video.findByIdAndUpdate(videoId,{
+      $addToSet:{dislikes:id},
+      $pull:{likes:id}
+    })
+
+
+    response.status(200).json({message:"disliked this video"})
+
+    
+    
+  } catch (error) {
+    next(error)
+  }
+};
  
