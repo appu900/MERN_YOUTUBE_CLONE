@@ -16,12 +16,12 @@ const router = express.Router();
 
 router
    .put("/:id",verifyToken,updateUser)
-   .delete("/:id",deleteUser)
+   .delete("/:id",verifyToken,deleteUser)
    .get("/find/:id",getUser)
-   .put("/sub/:id",subscribe)
-   .put("/unsub/:id",unsubscribe)
-   .put("/like/:videoId",like)
-   .put("/dislike/:videoId",dislike)
+   .put("/sub/:id",verifyToken,subscribe)
+   .put("/unsub/:id",verifyToken,unsubscribe)
+   .put("/like/:videoId",verifyToken,like)
+   .put("/dislike/:videoId",verifyToken,dislike)
 
 
 
