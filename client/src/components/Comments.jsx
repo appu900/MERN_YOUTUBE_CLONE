@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import chnlImage from "../images/girl-4448689_1280.jpg";
+import PrevComment from "./PrevComment";
 
 
 const Container = styled.div``;
@@ -37,6 +38,22 @@ const Comments = () => {
           <Input className="text-xm" placeholder="add a comment......" />
         </NewComment>
         <div>
+            <PrevComment/>
+            <PrevComment/>
+            <PrevComment/>
+            <PrevComment/>
+            <PrevComment/>
+            <PrevComment/>
+            <PrevComment/>
+            <PrevComment/>
+            <PrevComment/>
+            <PrevComment/>
+            <PrevComment/>
+            <PrevComment/>
+            <PrevComment/>
+            <PrevComment/>
+            <PrevComment/>
+
             
         </div>
       </Container>

@@ -1,6 +1,6 @@
 import React from "react";
 import youtubeLogo from "../images/mainLogo.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@mui/icons-material/Home";
 import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
@@ -19,7 +19,7 @@ const Item = styled.div`
   align-items: center;
   gap: 20px;
   cursor: pointer;
-  padding: 7.5px 0;
+  padding: 7.5px 5px;
   margin-top: 5px;
   font-size: 12px;
 `;
@@ -66,7 +66,7 @@ const Menu = () => {
       {/* menu section */}
 
       <div className="">
-        <Item className="text-sm">
+        <Item className="text-sm hover:bg-[#3F3F3F] hover:rounded-lg">
           <HomeIcon className="" />
           <p className="text-[14px] ">Home</p>
         </Item>
@@ -95,10 +95,12 @@ const Menu = () => {
 
         <div className="w-full border border-gray-700 mt-3 mb-6 opacity-40"></div>
         <Login className="">
-          <LoginButton>
-            <AccountCircleIcon />
-            <p>SIGN IN</p>
-          </LoginButton>
+          <Link to="/signin">
+            <LoginButton>
+              <AccountCircleIcon />
+              <p>SIGN IN</p>
+            </LoginButton>
+          </Link>
         </Login>
         <div className="w-full border border-gray-700 mt-6 opacity-40"></div>
 

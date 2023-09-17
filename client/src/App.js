@@ -4,11 +4,13 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import VideoPage from "./pages/VideoPage";
 import youtubeLogo from "./images/mainLogo.png";
-import { useNavigate } from "react-router-dom";
 import Menu from "./components/Menu";
 import Navbar from "./components/Navbar";
+import SignIn from "./pages/SignIn";
 
 function App() {
+
+  
   return (
     <div className=" flex items-center w-full h-screen absolute bg-[#121213] ">
       {/* first menu section */}
@@ -27,6 +29,7 @@ function App() {
           <Routes>
                <Route path="/">
                 <Route index element={<HomePage/>}/>
+                <Route path="/signin" element={<SignIn/>}/>
                 <Route path="video">
                   <Route path=":id" element={<VideoPage/>}/>
                 </Route>

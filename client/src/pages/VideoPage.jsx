@@ -8,7 +8,7 @@ import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import chnlImage from "../images/girl-4448689_1280.jpg";
 import Comments from "../components/Comments";
-
+import Card from "../components/Card";
 
 const Container = styled.div`
   display: flex;
@@ -147,10 +147,20 @@ const VideoPage = () => {
         </div>
         {/* comment section div */}
         <div>
-           <Comments/> 
+          <Comments />
         </div>
       </Content>
-      <Recomendation>recomendation part</Recomendation>
+      <Recomendation>
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+      </Recomendation>
     </Container>
   );
 };
